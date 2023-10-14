@@ -12,36 +12,28 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	va_start(args, format);
-	while (format[i] != '\0')
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (format[i] != '%')
+		if (format[i] == '%')
 		{
-			putchar(*format);
-			count++;
-		}
-		else
-		{
-			if (format[i] == '%')
+			i++;
+			switch (format[i])
 			{
-				i++;
-				switch (format[i])
-				{
-					case 'c':
-						count += fprintf(stdout, "%c", va_arg(args, int));
-						break;
-					case 's':
-						count += fprintf(stdout, "%s", va_arg(args, char *));
-						break;
+				case 'c':
+					count += fprintf(stdout, "%c", va_arg(args, int));
+					break;
+				case 's':
+					count += fprintf(stdout, "%s", va_arg(args, char *));
+					break;
 
-					default:
-						putchar('%');
-						putchar(format[i]);
-						count += 2;
-						break;
-				}
-
-				format++;
+				default:
+					putchar('%');
+					putchar(format[i]);
+					count += 2;
+					break;
 			}
+
+			format++;
 		}
 	}
 	va_end(args);
