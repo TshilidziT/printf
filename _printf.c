@@ -6,12 +6,12 @@
 /**
  * _printf - function that produces output accoring to a format.
  * @format: character string
- * Return: i
+ * Return: count
  */
 
 int _printf(const char *format, ...)
 {
-	int i;
+	int i, count = 0;
 	va_list arg;
 
 	va_start(arg, format);
@@ -24,20 +24,28 @@ int _printf(const char *format, ...)
 			switch (format[i])
 			{
 				case 'c':
-					printf("%c\n", va_arg(arg, int));
+					count += printf("%c", va_arg(arg, int));
 					break;
 				case 's':
-					printf("%s\n", va_arg(arg, char *));
+					count += printf("%s", va_arg(arg, char *));
+					break;
+				default:
+					putchar('%');
+					putchar(format[i]);
+					count += 2;
+
 					break;
 			}
 		}
 		else
 		{
-			printf("%c\n", format[i]);
+			putchar(format[i]);
+			count++;
+
 		}
 
 	}
 	va_end(arg);
 
-	return (i);
+	return (count);
 }
