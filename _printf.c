@@ -9,9 +9,9 @@
 int _printf(const char *format, ...)
 {
 	int i, count = 0;
-	va_list arg;
+	va_list args;
 
-	va_start(arg, format);
+	va_start(args, format);
 	while (format[i] != '\0')
 	{
 		if (format[i] != '%')
@@ -24,21 +24,26 @@ int _printf(const char *format, ...)
 			if (format[i] == '%')
 			{
 				i++;
-				while (format[i])
+				switch (format[i])
 				{
-					if (format[i] == 'c')
-						count += fprintf(stdout, "%c", va_arg(arg, int));
-					else if (format[i] == 's')
-						count += fprintf(stdout, "%s", va_arg(arg, char *));
-							putchar('%');
-							putchar(format[i]);
-							count += 2;
+					case 'c':
+						count += fprintf(stdout, "%c", va_arg(args, int));
+						break;
+					case 's':
+						count += fprintf(stdout, "%s", va_arg(args, char *));
+						break;
+
+					default:
+						putchar('%');
+						putchar(format[i]);
+						count += 2;
+						break;
 				}
 
 				format++;
 			}
 		}
 	}
-	va_end(arg);
+	va_end(args);
 	return (count);
 }
