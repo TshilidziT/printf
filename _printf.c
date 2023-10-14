@@ -1,8 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
-#include <unistd.h>
 #include <stdio.h>
-#include <string.h>
 /**
  * _printf - function that produces output accoring to a format.
  * @format: character string
@@ -15,6 +13,10 @@ int _printf(const char *format, ...)
 	va_list arg;
 
 	va_start(arg, format);
+
+	if (format == NULL)
+		return (-1);
+
 
 	for (i = 0; format[i] != '\0'; i++)
 	{
