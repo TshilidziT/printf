@@ -32,9 +32,14 @@ int _printf(const char *format, ...)
 					count += printf("%s", va_arg(arg, char *));
 					break;
 				case '%':
-					count += printf("%%", va_arg(arg, int ));
+					count += printf("%%", va_arg(arg, char * ));
 
 					break;
+				default:
+                                        putchar('%');
+                                        putchar(format[i]);
+                                        count += 2;
+                                        break;
 			}
 		}
 		else
