@@ -20,23 +20,25 @@ int _printf(const char *format, ...)
 			switch (format[i])
 			{
 				case 'c':
-					count += printf("%c", va_arg(args, int));
+					printf("%c", va_arg(args, int));
 					break;
 				case 's':
-					count += printf("%s", va_arg(args, char *));
+					printf("%s", va_arg(args, char *));
 					break;
 
 				default:
-					printf("%%")
+					printf("%%");
 					break;
 			}
 
-			else
-			{
+		}
+		else
+		{
 
-			printf("%c"format[i]);
-			}
+		printf("%c", format[i]);
+		}
 	}
 	va_end(args);
 	return (i);
+	
 }
