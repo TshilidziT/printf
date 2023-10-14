@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 		if (format[i] != '%')
 		{
 			putchar(*format);
-			coun++;
+			count++;
 		}
 		else
 		{
