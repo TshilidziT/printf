@@ -15,6 +15,7 @@ int _printf(const char *format, ...)
 	va_start(arg, format);
 
 	if (format == NULL)
+		return (-1);
 
 
 	for (i = 0; format[i] != '\0'; i++)
@@ -37,7 +38,7 @@ int _printf(const char *format, ...)
 				default:
 					putchar('%');
 					putchar(format[i]);
-					count += 2;
+					count += 3;
 					break;
 			}
 		}
