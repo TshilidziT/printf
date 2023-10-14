@@ -6,12 +6,18 @@
  * @format: character string
  * Return: count
  */
+
 int _printf(const char *format, ...)
 {
 	int i, count = 0;
-	va_list args;
+	va_list arg;
 
-	va_start(args, format);
+	va_start(arg, format);
+
+	if (format == NULL)
+		return (-1);
+
+
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
@@ -20,21 +26,28 @@ int _printf(const char *format, ...)
 			switch (format[i])
 			{
 				case 'c':
-					count += printf("%c", va_arg(args, int));
+					count += printf("%c", va_arg(arg, int));
 					break;
 				case 's':
-					count += printf("%s", va_arg(args, char *));
+					count += printf("%s", va_arg(arg, char *));
+					break;
+				default:
+					putchar('%');
+					putchar(format[i]);
+					count += 2;
+
 					break;
 			}
-
 		}
 		else
 		{
+			putchar(format[i]);
+			count++;
 
-		count += printf("%c", format[i]);
 		}
-	}
-	va_end(args);
-	return (count);
 
+	}
+	va_end(arg);
+
+	return (count);
 }
