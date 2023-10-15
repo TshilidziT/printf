@@ -48,7 +48,11 @@ int _printf(const char *format, ...)
 					write(1, &format[i], 1);
 					count++;
 					break;
-
+			default:
+					putchar('%');
+					putchar(format[i]);
+					count += 2;
+					break;
 			}
 		}
 
