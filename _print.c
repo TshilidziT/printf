@@ -40,24 +40,28 @@ int _printf(const char *format, ...)
 					str = va_arg(arg, char *);
 					if (str != NULL)
 					{
-					write(1, str, strlen(str));
-					count++;
+						write(1, str, strlen(str));
+						count++;
 					}
 					break;
 				case '%':
 					write (1, format, 1);
 					count++;
 					break;
-					
+				default:
+					write(1, "%", 1);
+					write(1, &format[i], 1);
+					count += 2;
+					break;
 			}
 		}
 		else
 		{
-		write (1, &format[i], 1);
+		write(1, &format[i], 1);
 			count++;
 		}
 	}
-		
+
 	va_end(arg);
 
 	return (count);
