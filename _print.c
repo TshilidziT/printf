@@ -45,20 +45,20 @@ int _printf(const char *format, ...)
 					}
 					break;
 				case '%':
-					write(1, &format[i], 1);
+					write(1, "%", 1);
 					count++;
 					break;
 				default:
-					write(1, "%", 1);
+					write(1, &format[i], 1);
 					count++;
 					break;
 			}
 		}
-
 		else
 		{
 			write(1, &format[i], 1);
 			count++;
+		
 		}
 	}
 
