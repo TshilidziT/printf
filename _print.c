@@ -41,17 +41,16 @@ int _printf(const char *format, ...)
 					if (str != NULL)
 					{
 					write(1, str, strlen(str));
-					count++;
+					count += strlen(str);
 					}
 					break;
 				case '%':
 					write(1, &format[i], 1);
 					count++;
 					break;
-			default:
-					putchar('%');
-					putchar(format[i]);
-					count += 2;
+				default:
+					write(1, "%", 1);
+					count++;
 					break;
 			}
 		}
@@ -59,7 +58,7 @@ int _printf(const char *format, ...)
 		else
 		{
 		write(1, &format[i], 1);
-			count++;
+		count++;
 		}
 	}
 
