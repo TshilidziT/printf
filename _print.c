@@ -32,11 +32,14 @@ int _printf(const char *format, ...)
 			switch (format[i])
 			{
 				case 'c':
+				{
 					c = va_arg(arg, int);
 					write(1, &c, 1);
 					count++;
 					break;
+				}
 				case 's':
+				{
 					str = va_arg(arg, char *);
 					if (str != NULL)
 					{
@@ -44,10 +47,13 @@ int _printf(const char *format, ...)
 						count += strlen(str);
 					}
 					break;
+				}
 				case '%':
+				{
 					write(1, "%", 1);
 					count++;
 					break;
+				}
 				default:
 				{
 					write(1, &format[i - 1], 1);
