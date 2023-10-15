@@ -30,7 +30,7 @@ int _printf(const char *format, ...)
 			else if (format[i] == '%')
 				count += handlePercent();
 			else
-				count += handleDefault(format[i]);
+				count += handleDefault(format, i);
 		}
 		else
 		{
@@ -77,12 +77,13 @@ int handleChar(int c)
 }
 /**
  * handleDefault - handles unknown specifiers.
- * @c: unknown.
- * Return: 1 success.
+ * Return: 2 success.
  */
-int handleDefault(char c)
+int handleDefault(const char *format, int i)
 {
-	write(1, &c, 1);
-	return (1);
+
+	write(1, &format[i - 1], 1);
+	write(1, &format[i], 1);
+	return (2);
 }
 
