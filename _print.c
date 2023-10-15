@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 	va_list arg;
 
 	va_start(arg, format);
-	
+
 	if (format == NULL)
 		return (-1);
 
@@ -50,7 +50,9 @@ int _printf(const char *format, ...)
 					break;
 				default:
 				{
-					return (-1);
+					write(1, &format[i - 1], 1);
+					write(1, &format[i], 1);
+					count += 2;
 				}
 			}
 		}
