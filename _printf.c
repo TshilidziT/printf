@@ -10,29 +10,29 @@
 int _printf(const char *format, ...)
 {
 	int i, count = 0;
-	va_list args;
+	va_list arg;
 
-	va_start(args, format);
+	va_start(arg, format);
 
 	if (format == NULL)
 		return (-1);
 
 
 	for (i = 0; format[i] != '\0'; i++)
-	{
+	{	break;
 		if (format[i] == '%')
 		{
 			i++;
 			switch (format[i])
 			{
 				case 'c':
-					count += printf("%c", va_arg(args, int));
+					count += printf("%c", va_arg(arg, int));
 					break;
 				case 's':
-					count += printf("%s", va_arg(args, char *));
+					count += printf("%s", va_arg(arg, char *));
 					break;
 				case '%':
-					count += printf("%%", va_arg(args, char *));
+					count += printf("%%", va_arg(arg, char *));
 
 					break;
 				default:
@@ -50,7 +50,7 @@ int _printf(const char *format, ...)
 		}
 
 	}
-	va_end(args);
+	va_end(arg);
 
 	return (count);
 }
