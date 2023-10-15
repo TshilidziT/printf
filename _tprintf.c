@@ -16,13 +16,13 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
-
-
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
 			i++;
+			if (format[i] == '\0')
+				break;
 			switch (format[i])
 			{
 				case 'c':
@@ -39,7 +39,7 @@ int _printf(const char *format, ...)
 					putchar('%');
 					putchar(format[i]);
 					count += 2;
-					break;
+				break;
 			}
 		}
 		else
