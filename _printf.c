@@ -22,47 +22,36 @@ int _printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			putchar(*format);
+			write(1, format, 1);
 			count++;
 		}
 		else
 		{
 			format++;
 			if (*format == '\0')
-		{
 			break;
-		}
-		}
+
 			if (*format == 'c')
 			{
-				int c = va_arg(args, int);
+				char c = va_arg(args, int);
 
-				putchar(c);
+				write(1, &c, 1);
 				count++;
 			}
 			if (*format == 's')
 			{
 				const char *str = va_arg(args, const char*);
 
-				while (*str)
-				{
-
-					putchar(*str);
-					str++;
-					count++;
-				}
+				write(1, str, strlen(str));
+				count++;
+			}
 			if (*format == '%')
 			{
-				putchar('%');
+				write(1, format, 1);
 				count++;
 			}
 		}
-		else
-		{
 
-			putchar(*format);
-			count++;
-		}
 		format++;
 	}
 	va_end(args);
