@@ -22,54 +22,63 @@ int _printf(const char *format, ...)
 		return (-1);
 
 	for (i = 0; format[i] != '\0'; i++)
+	
 	{
-		if (format[i] == '%')
+		if (format[i] != '%')
 		{
-			i++;
-			if (format[i] == '\0')
-				break;
-
-			switch (format[i])
-			{
-				case 'c':
-				{
-					c = va_arg(arg, int);
-					write(1, &c, 1);
-					count++;
-					break;
-				}
-				case 's':
-				{
-					str = va_arg(arg, char *);
-					if (str != NULL)
-					{
-						write(1, str, strlen(str));
-						count += strlen(str);
-					}
-					break;
-				}
-				case '%':
-				{
-					write(1, "%", 1);
-					count++;
-					break;
-				}
-				default:
-				{
-					write(1, &format[i - 1], 1);
-					write(1, &format[i], 1);
-					count += 2;
-				}
-			}
+			break;
 		}
 		else
 		{
-			write(1, &format[i], 1);
-			count++;
+			format++;
 		}
-	}
+			if (format[i] == '%')
+			{
+				i++;
+				if (format[i] == '\0')
+					break;
 
-	va_end(arg);
+				switch (format[i] +1 )
+				{
+					case 'c':
+					{
+						c = va_arg(arg, int);
+						write(1, &c, 1);
+						count++;
+						break;
+					}
+					case 's':
+					{
+						str = va_arg(arg, char *);
+						if (str != NULL)
+						{
+							write(1, str, strlen(str));
+							count += strlen(str);
+						}
+							break;
+					}
+					case '%':
+					{
+						write(1, "%", 1);
+						count++;
+						break;
+					}
+					default:
+					{
+						write(1, &format[i - 1], 1);
+						write(1, &format[i], 1);
+						count += 2;
+					}
+				}
+			}
+			else
+			{
+				write(1, &format[i], 1);
+				count++;
+			}
+		}
 
-	return (count);
+		va_end(arg);
+
+		return (count);
 }
