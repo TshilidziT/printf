@@ -35,11 +35,6 @@ int _printf(const char *format, ...)
 					count += printf("%%", va_arg(arg, char *));
 
 					break;
-				default:
-					putchar('%');
-					putchar(format[i]);
-					count += 2;
-				break;
 			}
 		}
 		else
