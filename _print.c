@@ -41,7 +41,7 @@ int _printf(const char *format, ...)
 					if (str != NULL)
 					{
 						write(1, str, strlen(str));
-						count++;
+						count += strlen(str);
 					}
 					break;
 				case '%':
