@@ -40,8 +40,8 @@ int _printf(const char *format, ...)
 					str = va_arg(arg, char *);
 					if (str != NULL)
 					{
-					write(1, str, strlen(str));
-					count += strlen(str);
+						write(1, str, strlen(str));
+						count += strlen(str);
 					}
 					break;
 				case '%':
