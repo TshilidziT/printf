@@ -84,13 +84,8 @@ int handleChar(int c)
 int handleDefault(const char *format, int i)
 {
 	int c;
-	int written = write(1, &c, 1);
 
 	write(1, &format[i - 1], 1);
 	write(1, &format[i], 1);
 	return (2);
-
-		if (written == -1)
-			return (-1);
-	return (written);
 }
