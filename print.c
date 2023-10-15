@@ -77,6 +77,8 @@ int handleChar(int c)
 }
 /**
  * handleDefault - handles unknown specifiers.
+ * @format: the string
+ * @i: index
  * Return: 2 success.
  */
 int handleDefault(const char *format, int i)
