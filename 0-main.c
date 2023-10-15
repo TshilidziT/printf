@@ -8,13 +8,13 @@
 
 int main(void)
 {
-	char *format = "ALX is %s";
-	char *letter = "%c";
+	char *format = "ALX is %s\n";
+	char *letter = "A";
 
 	printf(format, "great");
-	printf(letter, "A");
+	printf("%s\n", letter);
+	printf("%%\n");
 
-	printf("\n");
 
 	return (0);
 
