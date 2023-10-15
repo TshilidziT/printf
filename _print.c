@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 			if (format[i] == '\0')
 				break;
 
-			switch (format[i])
+			switch (format[i] + 1)
 			{
 				case 'c':
 				{
