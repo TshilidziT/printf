@@ -56,12 +56,13 @@ int handleString(char *str)
 	size_t length = strlen(str);
 
 	if (str != NULL)
-	{
-		length++;
+		if (*str != '\0')
+		{
+			length++;
 
-		write(1, str, length);
-		return ((int)length);
-	}
+			write(1, str, length);
+			return ((int)length);
+		}
 	return (0);
 }
 /**
