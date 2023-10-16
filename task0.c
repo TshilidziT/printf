@@ -92,6 +92,7 @@ int handleChar(int c)
 int handleDefault(const char *format, int i)
 {
 
+	write(1, &format[i - 1], 1);
 	write(1, &format[i], 1);
-	return (1);
+	return (2);
 }
