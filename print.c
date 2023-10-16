@@ -19,7 +19,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			i++;
+			format++;
 			if (format[i] == '\0')
 				break;
 
@@ -37,7 +37,7 @@ int _printf(const char *format, ...)
 			write(1, &format[i], 1);
 			count++;
 		}
-		i++;
+		format++;
 	}
 
 	va_end(arg);
