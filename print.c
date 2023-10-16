@@ -29,8 +29,6 @@ int _printf(const char *format, ...)
 				count += handleString(va_arg(arg, char *));
 			else if (format[i] == '%')
 				count += handlePercent();
-			else
-				count += handleDefault(format, i);
 		}
 		else
 		{
@@ -75,17 +73,4 @@ int handleChar(int c)
 {
 	write(1, &c, 1);
 	return (1);
-}
-/**
- * handleDefault - handles unknown specifiers.
- * @format: the string
- * @i: index
- * Return: 2 success.
- */
-int handleDefault(const char *format, int i)
-{
-
-	write(1, &format[i - 1], 1);
-	write(1, &format[i], 1);
-	return (2);
 }
