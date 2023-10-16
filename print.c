@@ -57,11 +57,11 @@ int handleString(char *str)
 }
 /**
  * handlePercent - handles the percent.
- * Return: always 1.
+ * Return: alway 1
  */
 int handlePercent(void)
 {
-	write(1, "%", 1);
+	write(1, "%%", 1);
 	return (1);
 }
 /**
