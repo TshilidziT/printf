@@ -13,31 +13,46 @@ int _printf(const char *format, ...)
 	va_start(arg, format);
 
 	if (format == NULL)
+	{
+		va_end(arg);
 		return (-1);
-	for (i = 0; format[i] != '\0';)
+	}
+
+	for (i = 0; format[i] != '\0'; i++)
 
 	{
 		if (format[i] == '%')
 		{
 			i++;
 			if (format[i] == '\0')
-				break;
-
+			{
+				va_end(arg);
+				return (-1);
+			}
 			if (format[i] == 'c')
+			{
 				count += handleChar(va_arg(arg, int));
+			}
 			else if (format[i] == 's')
+			{
 				count += handleString(va_arg(arg, char *));
+			}
 			else if (format[i] == '%')
+			{
 				count += handlePercent();
+			}
+			else
+			{
+				va_end(arg);
+				return (-1);
+			}
 		}
 		else
 		{
 			write(1, &format[i], 1);
 			count++;
 		}
-		i++;
 	}
-
 	va_end(arg);
 	return (count);
 }
@@ -61,7 +76,7 @@ int handleString(char *str)
  */
 int handlePercent(void)
 {
-	write(1, "%", 1);
+	write(1, "%%", 1);
 	return (1);
 }
 /**
