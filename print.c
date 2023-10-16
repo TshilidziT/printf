@@ -14,7 +14,7 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
-	for (i = 0; format[i] != '\0'; i++)
+	for (i = 0; format[i] != '\0';)
 
 	{
 		if (format[i] == '%')
@@ -37,6 +37,7 @@ int _printf(const char *format, ...)
 			write(1, &format[i], 1);
 			count++;
 		}
+		i++;
 	}
 
 	va_end(arg);
