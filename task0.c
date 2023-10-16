@@ -68,7 +68,7 @@ int handleString(char *str)
  */
 int handlePercent(void)
 {
-	return (write(1, "%%", 1));
+	return (write(1, "%", 1));
 
 }
 /**
