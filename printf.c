@@ -1,5 +1,20 @@
 #include "main.h"
+#define BUFFER_SIZE 1024
 
+/**
+ * _write buffer - define a buffer to store output.
+ */
+static void _write_buffer(const char *buffer, int *buffer_index, int *count)
+{
+	char buffer[BUFFER_SIZE};
+	static int buffer_index = 0;
+	static int count = 0;
+
+	write(1, buffer, *buffer_index);
+	*count += *buffer_index;
+	*buffer_index = 0;
+	
+}
 /**
  * _printf - function that produces output accoring to a format.
  * @format: character string
@@ -14,7 +29,7 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
-	for (i = 0; format[i] != '\0';)
+	for (i = 0; format[i] != '\0'; i++)
 
 	{
 		if (format[i] == '%')
@@ -37,7 +52,6 @@ int _printf(const char *format, ...)
 			write(1, &format[i], 1);
 			count++;
 		}
-		i++;
 	}
 
 	va_end(arg);
