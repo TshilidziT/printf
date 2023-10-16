@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * _printf - function that produces output accoring to a format.
  * @format: character string
@@ -11,32 +10,33 @@ int _printf(const char *format, ...)
 	va_list arg;
 
 	va_start(arg, format);
-
 	if (format == NULL)
-	{
-		va_end(arg);
 		return (-1);
-	}
-
 	for (i = 0; format[i] != '\0'; i++)
-
 	{
 		if (format[i] == '%')
 		{
 			i++;
 			if (format[i] == '\0')
+			{
 				va_end(arg);
 				return (-1);
-			if (format[i] == 'c')
-				count += handleChar(va_arg(arg, int));
-			else if (format[i] == 's')
-				count += handleString(va_arg(arg, char *));
-			else if (format[i] == '%')
-				count += handlePercent();
-			else
-				va_end(arg);
-				return (-1);
-
+			}
+			switch (format[i])
+			{
+				case 'c':
+					count += handleChar(va_arg(arg, int));
+					break;
+				case 's':
+					count += handleString(va_arg(arg, char *));
+					break;
+				case '%':
+					count += handlePercent();
+					break;
+				default:
+					va_end(arg);
+					return (-1);
+			}
 		}
 		else
 		{
