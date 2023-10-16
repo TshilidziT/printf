@@ -55,8 +55,10 @@ int handleString(char *str)
 {
 	if (str != NULL)
 	{
-		write(1, str, strlen(str));
-		return (strlen(str));
+		size_t length = strlen(str);
+
+		write(1, str, length);
+		return ((int)length);
 	}
 	return (0);
 }
