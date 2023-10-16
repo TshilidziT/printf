@@ -1,8 +1,8 @@
 #include "main.h"
 /**
- * _printf - function that produces output accoring to a format.
- * @format: character string
- * Return: count
+ * _printf - function that produces output according to a format.
+ * @format: character string.
+ * Return: count.
  */
 int _printf(const char *format, ...)
 {
@@ -53,7 +53,7 @@ int _printf(const char *format, ...)
  */
 int handleString(char *str)
 {
-	if (str)
+	if (str != NULL)
 	{
 		write(1, str, strlen(str));
 		return (strlen(str));
