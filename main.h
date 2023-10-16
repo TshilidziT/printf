@@ -13,5 +13,6 @@ int _printf(const char *format, ...);
 int handleChar(int c);
 int handleString(char *str);
 int handlePercent(void);
+int handleDefault(const char *format, int i);
 
 #endif
