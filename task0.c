@@ -53,9 +53,11 @@ int _printf(const char *format, ...)
  */
 int handleString(char *str)
 {
+	size_t length = strlen(str);
+
 	if (str != NULL)
 	{
-		size_t length = strlen(str);
+		length++;
 
 		write(1, str, length);
 		return ((int)length);
@@ -68,6 +70,7 @@ int handleString(char *str)
  */
 int handlePercent(void)
 {
+
 	return (write(1, "%", 1));
 
 }
