@@ -25,27 +25,18 @@ int _printf(const char *format, ...)
 		{
 			i++;
 			if (format[i] == '\0')
-			{
 				va_end(arg);
 				return (-1);
-			}
 			if (format[i] == 'c')
-			{
 				count += handleChar(va_arg(arg, int));
-			}
 			else if (format[i] == 's')
-			{
 				count += handleString(va_arg(arg, char *));
-			}
 			else if (format[i] == '%')
-			{
 				count += handlePercent();
-			}
 			else
-			{
 				va_end(arg);
 				return (-1);
-			}
+
 		}
 		else
 		{
