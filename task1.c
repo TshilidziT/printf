@@ -11,6 +11,7 @@ char *int_to_str(int number)
         char *buffer = malloc(12);
         char *ptr = buffer + 11;
         int sign = 1;
+
         if (buffer == NULL)
         {
                 return (NULL);
@@ -41,13 +42,14 @@ char *int_to_str(int number)
 }
 void print_str(char *str)
 {
-        while (*str)
+        size_t length = strlen(str);
+	for (size_t i = 0; i < length; i++)
+
         {
-                putchar(*str);
-                str++;
+                putchar(str[i]);
         }
 }
-void  print_decimal(char specifier, int number)
+int print_decimal(char specifier, int number)
 {
         if (specifier == 'd' || specifier == 'i')
         {
@@ -88,6 +90,7 @@ char my_printf(const char *format, ...)
                         switch (*format)
                         {
                         case 'd':
+				{
                         case 'i':
                         {
                                 int number = va_arg(args, int);
@@ -95,7 +98,7 @@ char my_printf(const char *format, ...)
                         }
                                 break;
                         default:
-                                print_str("%");
+                                putchar("%");
                                 putchar(specifier);
                                 putchar('\n');
                                 return (0);
