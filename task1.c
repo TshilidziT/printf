@@ -82,7 +82,7 @@ void print_decimal(char specifier, int number)
 	}
 	}
 
-int my_printf(const char *format, ...)
+char _printf(const char *format, ...)
 {	
 	int specifier;
 
@@ -113,7 +113,7 @@ int my_printf(const char *format, ...)
 				break;
 
 			default:
-				print_str("Invalidspecifier:");
+				print_str("%");
 				putchar(specifier);
 				putchar('\n');		
 				return (0);
