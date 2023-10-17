@@ -82,7 +82,7 @@ void print_decimal(char specifier, int number)
 	}
 	}
 
-int _printf(const char *format, ...)
+int my_printf(const char *format, ...)
 {
 	va_list args;
 
