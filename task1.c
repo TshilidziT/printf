@@ -82,9 +82,11 @@ void print_decimal(char specifier, int number)
 	}
 	}
 
-int my_printf(const char *format, ...)
-{
-	va_list args;
+int _printf(const char *format, ...)
+{	
+	int specifier;
+
+	va_list args; specifier = 'd';
 
 	va_start(args, format);
 
@@ -111,9 +113,9 @@ int my_printf(const char *format, ...)
 				break;
 
 			default:
-				print_str("unkown specifier:");
-				putchar(*format);
-				putchar('\n');
+				print_str("Invalidspecifier:");
+				putchar(specifier);
+				putchar('\n');		
 				return (0);
 			}
 		format++;
