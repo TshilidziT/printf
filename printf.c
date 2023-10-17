@@ -58,8 +58,11 @@ int handleString(char *str)
 	{
 		size_t length = strlen(str);
 
+		if (length > 0)
+		{
 		write(1, str, length);
-		return ((int)length);
+		return (length);
+		}
 	}
 	return (0);
 }
@@ -69,8 +72,9 @@ int handleString(char *str)
  */
 int handlePercent(void)
 {
+	char percent = '%';
 
-	write(1, "%", 1);
+	write(1, &percent, 1);
 	return (1);
 
 }
@@ -81,8 +85,13 @@ int handlePercent(void)
  */
 int handleChar(int c)
 {
-	write(1, &c, 1);
-	return (1);
+	if (c >= 0 && c <= 127)
+	{
+		write(1, &c, 1);
+		return (1);
+	}
+	return (-1);
+
 }
 /**
  * handleDefault - handles unknown specifiers.
