@@ -19,14 +19,15 @@ char *int_to_str(int number)
 	}
 
 	*ptr = '\0';
-	if (number == 0)
+	if (number == INT_MIN)
 	{
-	*(--ptr) = '0';
+	*(--ptr) = '8';
 	return (ptr);
 	}
 
 	if (number < 0)
 	{
+	number /= 10;
 	number = -number;
 	sign = -1;
 	}
@@ -68,6 +69,7 @@ void print_decimal(char specifier, int number)
 		else
 		{
 			print_str("Memoryallocationerror\n");
+			return;
 		}
 
 	}
@@ -76,13 +78,15 @@ void print_decimal(char specifier, int number)
 		print_str("Invalidspecifier:");
 		putchar(specifier);
 		putchar('\n');
+		return;
 
 	}
 	}
 
-void my_printf(char *format, ...)
+int _printf(const char *format, ...)
 {
 	va_list args;
+
 	va_start(args, format);
 
 	while (*format)
@@ -95,20 +99,27 @@ void my_printf(char *format, ...)
 		else
 		{
 			format++;
-			if (*format == 'd' || *format == 'i')
+			switch (*format)
+			{
+			
+			case 'd':
+			case 'i':
 			{
 				int number = va_arg(args, int);
 
 				print_decimal(*format, number);
-				format++;
-			}
-			else
-			{
-				print_str("Invalidformat:");
+			}	
+				break;
+				
+			default:
+				print_str("unkown specifier:");
 				putchar(*format);
 				putchar('\n');
-				break;
+				return (0);
 			}
+		format++;
 		}
 	}
+	va_end(args);
+	return (0);
 }
