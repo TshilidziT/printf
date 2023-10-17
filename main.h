@@ -19,6 +19,6 @@ int handleDefault(const char *format, int i);
 char *int_to_str(int number);
 void print_str(char *str);
 void print_decimal(int number);
-char my_printf(const char *format, ...);
 int _printBinary(unsigned int x, const char *conversionSpecifier);
+
 #endif
