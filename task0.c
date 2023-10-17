@@ -70,7 +70,8 @@ int handleString(char *str)
 int handlePercent(void)
 {
 
-	return (write(1, "%", 1));
+	write(1, "%", 1);
+	return (1);
 
 }
 /**
@@ -91,8 +92,11 @@ int handleChar(int c)
  */
 int handleDefault(const char *format, int i)
 {
+	char current;
 
-	write(1, &format[i - 1], 1);
+	current = format[i - 1];
+
+	write(1, &current, 1);
 	write(1, &format[i], 1);
 	return (2);
 }
