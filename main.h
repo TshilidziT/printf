@@ -1,10 +1,13 @@
 #ifndef MAIN_H
 #define MAIN_H
+
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
+
+#define BUFF_SIZE 1024
 
 int _printf(const char *format, ...);
 int handleString(char *str);
@@ -16,5 +19,4 @@ void print_str(char *str);
 void print_decimal(char specifier, int number);
 char my_printf(const char *format, ...);
 int _printBinary(unsigned int x, const char *conversionSpecifier);
-
 #endif
