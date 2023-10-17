@@ -64,7 +64,6 @@ void print_decimal(char specifier, int number)
 		if (str != NULL)
 		{
 			print_str(str);
-			free(str);
 		}
 		else
 		{
@@ -101,16 +100,16 @@ int _printf(const char *format, ...)
 			format++;
 			switch (*format)
 			{
-			
+
 			case 'd':
 			case 'i':
 			{
 				int number = va_arg(args, int);
 
 				print_decimal(*format, number);
-			}	
+			}
 				break;
-				
+
 			default:
 				print_str("unkown specifier:");
 				putchar(*format);
